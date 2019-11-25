@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>weather app</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<!-- bootstap css -->
+<style>
+    #forecast td{
+        border: 1px solid white;
+        color: black;
+        background-color: powderblue;
+       text-align: center;
+    }
+    .ico{
+        background-color: black;
+    }
+    .sidenav {
+  height: 100%;
+  width: 0;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: whitesmoke;
+  overflow-x: hidden;
+  transition: 0.5s;
+  padding-top: 60px;
+ border-top-right-radius: 10px;
+       
+        
+}
+
+.sidenav a {
+  padding: 8px 8px 8px 32px;
+  text-decoration: none;
+  font-size: 18px;
+  color: black;
+  display: block;
+  transition: 0.3s;
+}
+
+.sidenav a:hover {
+  color: black;
+}
+
+.sidenav .closebtn {
+  position: absolute;
+  top: 0;
+  right: 25px;
+  font-size: 36px;
+  margin-left: 65px;
+}
+
+#main {
+  transition: margin-left .5s;
+  padding:0;
+}
+
+@media screen and (max-height: 450px) {
+  .sidenav {padding-top: 15px;}
+  .sidenav a {font-size: 18px;}
+}
+    @media only screen and (max-width:800px) {
+  /* For tablets: */
+  .main {
+    width: 80%;
+    padding: 0;
+  }
+  .right {
+    width: 100%;
+  }
+}
+@media only screen and (max-width:500px) {
+  /* For mobile phones: */
+  .menu, .main, .right {
+    width: 100%;
+  }
+}
+   
+.dark:hover
+    {
+        left: 100;
+        transition: 1s;
+        background-color: lightgray;
+        border-bottom: 2px solid green;
+        background: linear-gradient(90deg,tranparent,lightgray);
+        box-shadow: 10px 5px 10px black;
+        border-radius: 5px;
+        font-size: 26px;
+    }
+    </style>
+</head>  
+    <body style="margin: 0; padding: 0; background-color:#e6e6e6;">
+        <div  id="main">
+            
+ 
+             <header style="background-color: black; height: 1px;opacity: 0.9; box-shadow: 3px 3px 50px 50px; black;" >
+                
+             
+                 <h1 style="font-weight: 700; font-family: sans-serif; margin-top: 18px;color: white;margin-left: 200px;position: absolute; ">Agro Weather Eye</h1>
+                 <a style="color:white;text-decoration: none; font-family: sans-serif;position: absolute; margin-left: 860px; margin-top: 30px;" href="maps.html">Satellite</a>
+                 <a style="color:white;text-decoration: none;font-family: sans-serif; margin-left: 940px; margin-top: 30px;position: absolute;">News</a>
+                 <a style="color:white;text-decoration: none;font-family: sans-serif; margin-left: 1010px; margin-top: 30px;position: absolute;">Guide</a>
+        
+                 
+                 
+                 
+                 
+    <div style="background-color: white; width: 240px;margin-left: 1110px;margin-top: 0px; height: 100px;border-radius: 10px;box-shadow: 1px 1px 20px black;">
+                 <canvas style="margin-left: 20px;" id="canvas" width="100" height="100"style="background-color:#333"></canvas>
+                     <p style="font-family: sans-serif;color: black; border: 1px solid white; font-size: 14px; width: 100px; height: 40px;margin-top: -100px; margin-left: 140px;" id="demo"></p>
+    </div>
+    <!-- right bar -->
+         <div style="margin-left: 1120px;width: 230px;background-color: white;border-radius: 10px; height: 770px;box-shadow: 1px 1px 20px black; border: 2px solid green">
+            <div style="margin-left: 400px; margin-top: -400px; position: absolute;box-shadow: 1px 1px 20px black; " id="cont_68d52efbfda6a6fd8a3548134d9e5e0f"><script type="text/javascript" async src="https://www.theweather.com/wid_loader/68d52efbfda6a6fd8a3548134d9e5e0f">
+    </script></div>
+               
+             
+             <!-- moon --> 
+             <script type="text/javascript" src="http://moonphases.co.uk/js/widget.js" id="moonphase_widget" widget="" lat="" lng="" date="" tz=""></script>
+            
+
+        <!-- tides-->
+        <div style="box-shadow: 1px 1px 20px black;border-radius: 10px; position: absolute;background-color: beige; margin-left: 50px;">
+<script  src="https://www.tidetimes.org.uk/grimsby-tide-times.js" type="text/javascript"></script>
+        </div>
+</div>
+                 
+                     </header> 
+    <!--sidenav-->  
+
+           
+       
+          <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header" style="margin-top:-100px; padding: 0; background-image: url(sunset.jpg); height: 400px; background-size: cover;background-position: center;border-bottom: 5px solid green">
+              </div>
+        <div  style="margin-top:-180px; margin-left: 100px;" class="form-group">
+                    <label  style="margin-top:-180px; margin-left: 200px;"  for="city-name"></label>
+                <input style="height: 80px; width: 500px; border-radius: 5px; border: none; box-shadow: 1px 5px 10px black;" type="text" class="form-control" id="cityname" placeholder="Location Name:Eg:Bulacao">
+
+                    <label style="color: white;font-family: sans-serif; margin-top:-80px; background-color: black;  margin-left:5px;" for="number-of-days"></label>
+                <input style="height: 40px; width: 180px; border: none; border-radius: 5px;margin-top:-100px; box-shadow: 1px 5px 10px black;" type="text" class="form-control" id="days" placeholder="Number of days:min:1 max:16">
+                    <button style="position: absolute; height: 40px; margin-left: 5px; width: 80px; border: none; border-radius: 5px; background-color: greenyellow;box-shadow: 1px 5px 10px black;" id="submitCity" class="btn btn-primary" onclick="getForecast(document.getElementById('cityname').value,document.getElementById('days').value);">&#128269;</button>
+                  
+        </div>
+ 
+  </div>
+        </div>
+        <!--open nav-->
+            <span style="font-family: sans-serif;  font-size:24px;cursor:pointer; margin-top: -148px;margin-left: 20px; color: white;position: absolute;" onclick="openNav()">&#9776;</span>
+        <div style="font-family: sans-serif;" id="mySidenav" class="sidenav">
+    <!--close nav-->
+  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>  
+    <a style="margin-top: -50px;border-bottom: 2px solid gray;" href="#"><h5 style="font-size: 20px; margin-bottom: 10px;">Agro Weather Eye</h5></a>
+    <a class="dark" href="darkmode.html"><span class="line"></span>Darkmode</a>
+    <a class="dark" href="moonphase.html"> MoonPhase</a>
+    <a class="dark" href="https://www.techpopop.com/2012/07/philippine-climate-and-planting.html">Cropclopedia</a>
+    <a class="dark" href="crop.html">About</a>
+  
+</div>
+
+      <div  class="table-responsive">
+          <div style="margin-top: 200px;  height: 100px;">
+        <table style="color: white; font-family: sans-serif;margin-top: 50px; width: 750px; background-color: white; height: 1px;margin-left: 350px; border-radius: 5px;box-shadow: 1px 1px 20px black;"class="table table-bordered  table-condensed">
+          <thead>
+            <tr>
+              <th style=" border: 1px solid #ddd;background-color: green;" class="ico" >Icon</th>
+              <th style=" border: 1px solid #ddd;background-color: green;">Weather</th>
+              <th style=" border: 1px solid #ddd;background-color: green;">Description</th>
+              <th style=" border: 1px solid #ddd;background-color: green;">Morning</th>
+              <th style=" border: 1px solid #ddd;background-color: green;">Night</th>
+              <th style=" border: 1px solid #ddd;background-color: green;">Min</th>
+              <th style=" border: 1px solid #ddd;background-color: green;">Max</th>
+              <th style=" border: 1px solid #ddd;background-color: green;">Pressure</th>
+              <th style=" border: 1px solid #ddd;background-color: green;">Humidity</th>
+              <th style=" border: 1px solid #ddd;background-color: green;">Wind Speed</th>
+            </tr>
+          </thead> 
+          <tbody style="border: 1px solid #ddd;" id="forecast">
+            
+          </tbody> 
+        </table>  
+      </div>
+</div>
+<div style="margin-top: -120px;margin-left: 10px; background-color:whitesmoke; width: 330px; height: 280px;border-radius: 5px; box-shadow: 1px 1px 20px black; text-align: center;">
+    <h4 style="font-family: sans-serif;">Philippine Satellite</h4>
+       <img style="  height: 220px; margin-top: -5px; " data-src="https://api.accuweather.com/maps/v1/satellite/static/globalIR/tile?apikey=de13920f574d420984d3080b1fa6132b&amp;zoom=3&amp;lon=122.000&amp;lat=13.000&amp;imgwidth=768&amp;imgheight=432&amp;language=en&amp;base_data=satellite" data-srcset="https://api.accuweather.com/maps/v1/satellite/static/globalIR/tile?apikey=de13920f574d420984d3080b1fa6132b&amp;zoom=3&amp;lon=122.000&amp;lat=13.000&amp;imgwidth=768&amp;imgheight=432&amp;language=en&amp;base_data=satellite 768w,https://api.accuweather.com/maps/v1/satellite/static/globalIR/tile?apikey=de13920f574d420984d3080b1fa6132b&amp;zoom=2&amp;lon=122.000&amp;lat=13.000&amp;imgwidth=480&amp;imgheight=270&amp;language=en&amp;base_data=satellite 480w" data-sizes="" class="component-image responsive-img" alt="Philippines Satellite" title="Philippines Satellite" src="https://api.accuweather.com/maps/v1/satellite/static/globalIR/tile?apikey=de13920f574d420984d3080b1fa6132b&amp;zoom=3&amp;lon=122.000&amp;lat=13.000&amp;imgwidth=768&amp;imgheight=432&amp;language=en&amp;base_data=satellite" srcset="https://api.accuweather.com/maps/v1/satellite/static/globalIR/tile?apikey=de13920f574d420984d3080b1fa6132b&amp;zoom=3&amp;lon=122.000&amp;lat=13.000&amp;imgwidth=768&amp;imgheight=432&amp;language=en&amp;base_data=satellite 768w,https://api.accuweather.com/maps/v1/satellite/static/globalIR/tile?apikey=de13920f574d420984d3080b1fa6132b&amp;zoom=2&amp;lon=122.000&amp;lat=13.000&amp;imgwidth=480&amp;imgheight=270&amp;language=en&amp;base_data=satellite 480w" sizes="" width="608px" height="342px"style="width:100%">  
+
+ </div>
+
+
+        
+<!--===========================================Jquery=========================================-->     
+        
+        
+        
+<script
+  src="https://code.jquery.com/jquery-3.2.1.min.js"
+  integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+  crossorigin="anonymous"></script>
+
+<!--bootstarp javascript-->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="script.js"></script>
+
+ <!------ Sidenav --->       
+        <script>
+function openNav() {
+  document.getElementById("mySidenav").style.width = "250px";
+  document.getElementById("main").style.marginLeft = "250px";
+  document.body.style.backgroundColor = "rgba(0,0,0,0.4)";
+}
+
+function closeNav() {
+  document.getElementById("mySidenav").style.width = "0";
+  document.getElementById("main").style.marginLeft= "0";
+  document.body.style.backgroundColor = "white";
+}
+</script>
+        <script>
+var d = new Date();
+document.getElementById("demo").innerHTML = d;
+</script>
+        
+        
+<!-- clock -->        
+        <script>
+var canvas = document.getElementById("canvas");
+var ctx = canvas.getContext("2d");
+var radius = canvas.height / 2;
+ctx.translate(radius, radius);
+radius = radius * 0.90
+setInterval(drawClock, 1000);
+
+function drawClock() {
+  drawFace(ctx, radius);
+  drawNumbers(ctx, radius);
+  drawTime(ctx, radius);
+}
+
+function drawFace(ctx, radius) {
+  var grad;
+  ctx.beginPath();
+  ctx.arc(0, 0, radius, 0, 2*Math.PI);
+  ctx.fillStyle = 'white';
+  ctx.fill();
+  grad = ctx.createRadialGradient(0,0,radius*0.95, 0,0,radius*1.05);
+  grad.addColorStop(0, '#333');
+  grad.addColorStop(0.5, 'white');
+  grad.addColorStop(1, '#333');
+  ctx.strokeStyle = grad;
+  ctx.lineWidth = radius*0.1;
+  ctx.stroke();
+  ctx.beginPath();
+  ctx.arc(0, 0, radius*0.1, 0, 2*Math.PI);
+  ctx.fillStyle = '#333';
+  ctx.fill();
+}
+
+function drawNumbers(ctx, radius) {
+  var ang;
+  var num;
+  ctx.font = radius*0.15 + "px arial";
+  ctx.textBaseline="middle";
+  ctx.textAlign="center";
+  for(num = 1; num < 13; num++){
+    ang = num * Math.PI / 6;
+    ctx.rotate(ang);
+    ctx.translate(0, -radius*0.85);
+    ctx.rotate(-ang);
+    ctx.fillText(num.toString(), 0, 0);
+    ctx.rotate(ang);
+    ctx.translate(0, radius*0.85);
+    ctx.rotate(-ang);
+  }
+}
+
+function drawTime(ctx, radius){
+    var now = new Date();
+    var hour = now.getHours();
+    var minute = now.getMinutes();
+    var second = now.getSeconds();
+    //hour
+    hour=hour%12;
+    hour=(hour*Math.PI/6)+
+    (minute*Math.PI/(6*60))+
+    (second*Math.PI/(360*60));
+    drawHand(ctx, hour, radius*0.5, radius*0.07);
+    //minute
+    minute=(minute*Math.PI/30)+(second*Math.PI/(30*60));
+    drawHand(ctx, minute, radius*0.8, radius*0.07);
+    // second
+    second=(second*Math.PI/30);
+    drawHand(ctx, second, radius*0.9, radius*0.02);
+}
+
+function drawHand(ctx, pos, length, width) {
+    ctx.beginPath();
+    ctx.lineWidth = width;
+    ctx.lineCap = "round";
+    ctx.moveTo(0,0);
+    ctx.rotate(pos);
+    ctx.lineTo(0, -length);
+    ctx.stroke();
+    ctx.rotate(-pos);
+}
+</script>
+        <script type="text/javascript">
+  var tt_border = '4px solid #cc0000';
+  var tt_bgnd   = '#ffffff';
+  var tt_width  = '200px';
+</script>
+
+    </body>
+            
+
+</html>

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Agro Weather Eye</title>
+	<meta name="viewport" content="width=device-width,initial-scale=1">
+	<!-- bootstap css -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+    <div style="background-image: url(sunset.jpg); background-size: cover; height: 400px;">
+    <div id="main">
+ <header style="width: 100%; height: 80px; margin-top: -30px; margin-left: 0;background-color:#2eb82e; box-shadow: 5px 5px 5px black;">
+         
+      
+      <a class="opens" style="margin-top: 25px; color: white; font-size:25px;cursor: pointer" onclick="openNav()">&#9776;</a>
+     <a class="opens" style="margin-top: 25px; color: white; font-size:25px;cursor: pointer" onclick="openNav()">&#9776;</a>
+     
+    <a style="  text-decoration: none;" class="navbar-brand app-name" href="index.html"><img style="color: white;" src="img/logo.png" class="img-responsive" id="logo" alt=""><strong>Agro Weather Eye</strong></a>
+          
+   </header>
+   
+    <div id="mySidenav" class="sidenav">
+        <a href="javascript:void(0)" class = "closebtn" onclick="closeNav()">X</a>
+          <a href="current.html"><h3 style="margin-left:  30px;">Agro Weather Eye</h3></a>
+        <a href="forecast.html">Forecast</a>
+        <a href="#">About</a>
+        <a href="#">Cropclopedia</a>
+        <a href="maps.html">Maps</a>
+        <a href="team.html">Our Teams</a>
+        <a href="#">Contact</a>
+
+        <a href ="https://satellites.pro/">Worldwide Satellite</a>
+    </div>
+
+
+<div class="jumbotron jumbo">
+	<h2 style="background-color:transparent;color: black;">Get Current Weather Information</h2>
+
+<div class="container">
+	<div class="row">
+		<div class="col-md-12">
+			<center><h3  style="background-color:transparent;color: black;" >Enter City Name:</h3>
+			<div id="error"></div></center>
+		</div>
+		<div  class="row form-group form-inline" id="city">
+			<input style="margin-left: -50px; " type="text" name="cityname" id="cityname" class="form-control" placeholder="ex.Bulacao">
+			<button style=" background-color:#2eb82e;color: white;border-radius: 5px; width: 53px; height: 52px; 
+    margin-top:-70px; margin-left: 290px; cursor: pointer;" id="submitCity" class="btn btn-primary" onclick="getWeather(document.getElementById('cityname').value);">&#128269;</button>
+		</div>
+        </div>
+    
+        <div id="weather-data">
+		        
+	    </div>
+	</div>
+</div>
+      </div>
+     
+      <script>
+function openNav() {
+  document.getElementById("mySidenav").style.width = "350px";
+  document.getElementById("main").style.marginLeft = "350px";
+  document.body.style.backgroundColor = "rgba(0,0,0,0.6)";
+}
+
+function closeNav() {
+  document.getElementById("mySidenav").style.width = "0";
+  document.getElementById("main").style.marginLeft= "0";
+  document.body.style.backgroundColor = "white";
+    document.body.style.Color = "white";
+}
+      </script>
+<!--Jquery-->
+<script
+  src="https://code.jquery.com/jquery-3.2.1.min.js"
+  integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+  crossorigin="anonymous"></script>
+
+<!--bootstarp javascript-->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="script.js"></script>
+</body>
+</html>
